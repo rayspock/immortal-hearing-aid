@@ -6,8 +6,10 @@ import "hardhat/console.sol";
 contract YourContract {
 
   event SetPurpose(address sender, string purpose);
+  event Attest(address sender, string hash);
 
-  string public purpose = "🛠 Programming Unstoppable Money";
+  mapping (address => string) public attestations;
+  string public purpose = "Immortal Hearing Aid";
 
   constructor() public {
     // what should we do on deploy?
@@ -17,6 +19,12 @@ contract YourContract {
     purpose = newPurpose;
     console.log(msg.sender,"set purpose to",purpose);
     emit SetPurpose(msg.sender, purpose);
+  }
+
+  function attest(string memory hash) public {
+    console.log(msg.sender, "attests to", hash);
+    emit Attest(msg.sender, hash);
+    attestations[msg.sender] = hash;
   }
 
 }
