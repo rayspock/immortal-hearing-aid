@@ -358,12 +358,21 @@ function App(props) {
             </div>
 
             <div style={{ padding: 32, textAlign: "left" }}>{attestationDisplay}</div>
-            <div style={{ padding: 64, textAlign: "left" }} />
+            <div style={{ padding: 32, textAlign: "left" }} />
             {/*
                 🎛 this scaffolding is full of commonly used components
                 this <Contract/> component will automatically parse your ABI
                 and give you a form to interact with it locally
             */}
+            <Contract
+              name="APIConsumer"
+              signer={userProvider.getSigner()}
+              provider={localProvider}
+              address={address}
+              blockExplorer={blockExplorer}
+            />
+            <div style={{ padding: 64, textAlign: "left" }} />
+
             {/* <Contract
               name="YourContract"
               signer={userProvider.getSigner()}
